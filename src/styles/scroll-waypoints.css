@@ -1,10 +1,10 @@
 .waypoints-section {
   --waypoints-grid-line: rgba(255, 252, 225, 0.08);
-  --waypoints-box-border: rgba(10, 228, 72, 0.35);
-  --waypoints-canvas-border: rgba(170, 59, 255, 0.55);
+  --waypoints-box-border: rgba(201, 162, 39, 0.4);
+  --waypoints-canvas-border: rgba(201, 162, 39, 0.55);
 
   position: relative;
-  background-color: #0e100f;
+  background-color: #080706;
   background-image:
     linear-gradient(rgba(255, 252, 225, 0.05) 2px, transparent 2px),
     linear-gradient(90deg, rgba(255, 252, 225, 0.05) 2px, transparent 2px),
@@ -99,8 +99,24 @@ canvas.waypoints-box {
   pointer-events: none;
 }
 
+.waypoints-sublabel {
+  position: absolute;
+  font-size: 0.55rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: none;
+  color: rgba(255, 252, 225, 0.35);
+  pointer-events: none;
+}
+
 .waypoints-container--initial .waypoints-label {
   bottom: -1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.waypoints-container--initial .waypoints-sublabel {
+  bottom: -2.75rem;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -110,8 +126,18 @@ canvas.waypoints-box {
   left: 0;
 }
 
+.waypoints-container--second .waypoints-sublabel {
+  top: -2.6rem;
+  left: 0;
+}
+
 .waypoints-container--third .waypoints-label {
   top: -1.75rem;
+  right: 0;
+}
+
+.waypoints-container--third .waypoints-sublabel {
+  top: -2.6rem;
   right: 0;
 }
 

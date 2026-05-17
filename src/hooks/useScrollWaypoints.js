@@ -85,7 +85,7 @@ export function useScrollWaypoints() {
       camera.position.set(0, 0, 3)
 
       const material = new THREE.MeshBasicMaterial({
-        map: makeGradientNoiseTexture('#0ae448', '#7c3aed'),
+        map: makeGradientNoiseTexture('#c9a227', '#7c3aed'),
       })
       mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material)
       scene.add(mesh)
