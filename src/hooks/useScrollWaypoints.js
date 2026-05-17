@@ -1,9 +1,8 @@
 import { useLayoutEffect, useRef } from 'react'
-import * as THREE from 'three'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Flip } from 'gsap/Flip'
-import { makeGradientNoiseTexture } from '../lib/three/makeGradientNoiseTexture'
+import { destinations } from '../data/siteContent'
 
 gsap.registerPlugin(ScrollTrigger, Flip)
 
@@ -13,6 +12,7 @@ export function useScrollWaypoints() {
   const initialRef = useRef(null)
   const secondMarkerRef = useRef(null)
   const thirdMarkerRef = useRef(null)
+  const cardRef = useRef(null)
 
   useLayoutEffect(() => {
     const section = sectionRef.current
@@ -20,39 +20,34 @@ export function useScrollWaypoints() {
     const initial = initialRef.current
     const secondMarker = secondMarkerRef.current
     const thirdMarker = thirdMarkerRef.current
+    const card = cardRef.current
 
-    if (!section || !main || !initial || !secondMarker || !thirdMarker) return undefined
+    if (!section || !main || !initial || !secondMarker || !thirdMarker || !card) return undefined
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (prefersReducedMotion) return undefined
 
+    const images = card.querySelectorAll('.waypoints-card__img')
+    const captionRegion = card.querySelector('[data-caption-region]')
+    const captionSpot = card.querySelector('[data-caption-spot]')
+    if (images.length < 3) return undefined
+
+    const waypoints = destinations.waypoints
+    const setCaption = (index) => {
+      if (!captionRegion || !captionSpot) return
+      captionRegion.textContent = waypoints[index].label
+      captionSpot.textContent = waypoints[index].sub
+    }
+
     let flipCtx
     let resizeTimer
-    let renderer
-    let scene
-    let camera
-    let mesh
-    let canvasEl
-
-    const render = () => {
-      if (!renderer) return
-      renderer.render(scene, camera)
-    }
-
-    const onResize = () => {
-      if (!renderer || !canvasEl) return
-      const rect = canvasEl.getBoundingClientRect()
-      const dpr = Math.min(window.devicePixelRatio || 1, 2)
-      renderer.setPixelRatio(1)
-      renderer.setSize(Math.max(1, rect.width * dpr), Math.max(1, rect.height * dpr), false)
-      camera.aspect = (rect.width || 1) / (rect.height || 1)
-      camera.updateProjectionMatrix()
-    }
 
     const buildTimeline = () => {
-      if (!canvasEl || !mesh) return
-
       flipCtx?.revert()
+
+      gsap.set(images, { opacity: 0 })
+      gsap.set(images[0], { opacity: 1 })
+      setCaption(0)
 
       flipCtx = gsap.context(() => {
         const stateSecond = Flip.getState(secondMarker)
@@ -65,67 +60,52 @@ export function useScrollWaypoints() {
             end: 'bottom bottom',
             scrub: 2,
             invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              const index = self.progress > 0.58 ? 2 : self.progress > 0.24 ? 1 : 0
+              setCaption(index)
+            },
           },
         })
 
-        tl.add(Flip.fit(canvasEl, stateSecond, { duration: 1, ease: 'none' }), 0)
-          .to(mesh.rotation, { x: `+=${Math.PI}`, y: `+=${Math.PI}`, duration: 1, ease: 'none' }, '<')
+        tl.add(Flip.fit(card, stateSecond, { duration: 1, ease: 'none' }), 0)
+          .to(card, { scale: 0.92, duration: 0.35, ease: 'power1.in' }, 0)
+          .to(card, { scale: 1, duration: 0.35, ease: 'power1.out' }, 0.65)
+          .to(images[0], { opacity: 0, duration: 0.4, ease: 'none' }, 0.45)
+          .to(images[1], { opacity: 1, duration: 0.4, ease: 'none' }, 0.45)
           .addLabel('mid', '+=0.5')
-          .add(Flip.fit(canvasEl, stateThird, { duration: 1, ease: 'none' }), 'mid')
-          .to(mesh.rotation, { x: `+=${Math.PI}`, y: `+=${Math.PI}`, duration: 1, ease: 'none' }, '<')
+          .add(Flip.fit(card, stateThird, { duration: 1, ease: 'none' }), 'mid')
+          .to(card, { scale: 0.92, duration: 0.35, ease: 'power1.in' }, 'mid')
+          .to(card, { scale: 1, duration: 0.35, ease: 'power1.out' }, 'mid+=0.65')
+          .to(images[1], { opacity: 0, duration: 0.4, ease: 'none' }, 'mid+=0.45')
+          .to(images[2], { opacity: 1, duration: 0.4, ease: 'none' }, 'mid+=0.45')
       }, section)
     }
 
-    const initThree = (canvas) => {
-      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true })
-      renderer.outputColorSpace = THREE.SRGBColorSpace
-
-      scene = new THREE.Scene()
-      camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100)
-      camera.position.set(0, 0, 3)
-
-      const material = new THREE.MeshBasicMaterial({
-        map: makeGradientNoiseTexture('#c9a227', '#7c3aed'),
-      })
-      mesh = new THREE.Mesh(new THREE.BoxGeometry(1, 1, 1), material)
-      scene.add(mesh)
-
-      gsap.ticker.add(render)
-      onResize()
-      buildTimeline()
-    }
-
-    canvasEl = document.createElement('canvas')
-    canvasEl.className = 'waypoints-box'
-    initial.appendChild(canvasEl)
-    initThree(canvasEl)
+    buildTimeline()
     requestAnimationFrame(() => ScrollTrigger.refresh())
 
     const handleResize = () => {
       clearTimeout(resizeTimer)
       resizeTimer = setTimeout(() => {
-        onResize()
         ScrollTrigger.refresh()
         buildTimeline()
       }, 150)
     }
+
+    const onImageLoad = () => ScrollTrigger.refresh()
+    images.forEach((img) => {
+      if (img.complete) return
+      img.addEventListener('load', onImageLoad, { once: true })
+    })
 
     window.addEventListener('resize', handleResize)
 
     return () => {
       clearTimeout(resizeTimer)
       window.removeEventListener('resize', handleResize)
+      images.forEach((img) => img.removeEventListener('load', onImageLoad))
       flipCtx?.revert()
-      gsap.ticker.remove(render)
-
-      if (mesh) {
-        mesh.geometry?.dispose()
-        mesh.material?.map?.dispose()
-        mesh.material?.dispose()
-      }
-
-      renderer?.dispose()
-      canvasEl?.remove()
+      gsap.set(card, { clearProps: 'transform' })
     }
   }, [])
 
@@ -135,5 +115,6 @@ export function useScrollWaypoints() {
     initialRef,
     secondMarkerRef,
     thirdMarkerRef,
+    cardRef,
   }
 }

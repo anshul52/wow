@@ -30,11 +30,29 @@ export const destinations = {
   kicker: 'Build your trip',
   title: 'Six places worth',
   titleEm: 'crossing the world for',
-  hint: 'Scroll — the cube hops between emirates as you plan your route.',
+  hint: 'Scroll — the photo card hops between emirates as you plan your route.',
   waypoints: [
-    { label: 'Dubai', sub: 'Burj Khalifa' },
-    { label: 'Abu Dhabi', sub: 'Louvre Abu Dhabi' },
-    { label: 'Fujairah', sub: 'East coast' },
+    {
+      label: 'Dubai',
+      sub: 'Burj Khalifa',
+      image:
+        'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=85&fit=crop&crop=entropy',
+      alt: 'Burj Khalifa and Dubai skyline at dusk',
+    },
+    {
+      label: 'Abu Dhabi',
+      sub: 'Louvre Abu Dhabi',
+      image:
+        'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=800&q=85&fit=crop&crop=entropy',
+      alt: 'Louvre Abu Dhabi museum and waterfront',
+    },
+    {
+      label: 'Fujairah',
+      sub: 'East coast',
+      image:
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=85&fit=crop&crop=entropy',
+      alt: 'Fujairah east coast and Gulf waters',
+    },
   ],
 }
 

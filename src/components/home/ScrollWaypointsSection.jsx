@@ -3,7 +3,8 @@ import { useScrollWaypoints } from '../../hooks/useScrollWaypoints'
 import '../../styles/scroll-waypoints.css'
 
 export default function ScrollWaypointsSection() {
-  const { sectionRef, mainRef, initialRef, secondMarkerRef, thirdMarkerRef } = useScrollWaypoints()
+  const { sectionRef, mainRef, initialRef, secondMarkerRef, thirdMarkerRef, cardRef } =
+    useScrollWaypoints()
 
   const [start, second, third] = destinations.waypoints
 
@@ -30,6 +31,27 @@ export default function ScrollWaypointsSection() {
 
       <div ref={mainRef} className="waypoints-main">
         <div ref={initialRef} className="waypoints-container waypoints-container--initial">
+          <article ref={cardRef} className="waypoints-card" aria-live="polite">
+            {destinations.waypoints.map((waypoint, index) => (
+              <img
+                key={waypoint.label}
+                className="waypoints-card__img"
+                src={waypoint.image}
+                alt={waypoint.alt}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            ))}
+            <div className="waypoints-card__shade" aria-hidden="true" />
+            <div className="waypoints-card__caption">
+              <span className="waypoints-card__region" data-caption-region>
+                {start.label}
+              </span>
+              <span className="waypoints-card__spot" data-caption-spot>
+                {start.sub}
+              </span>
+            </div>
+          </article>
           <span className="waypoints-label">{start.label}</span>
           <span className="waypoints-sublabel">{start.sub}</span>
         </div>

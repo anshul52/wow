@@ -79,14 +79,73 @@
   opacity: 0.6;
 }
 
-canvas.waypoints-box {
+.waypoints-card {
+  position: relative;
   width: 200px;
   height: 200px;
-  border: 1px dashed var(--waypoints-canvas-border);
-  display: block;
+  overflow: hidden;
   border-radius: 10px;
-  background: transparent;
+  border: 1px solid var(--waypoints-canvas-border);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 252, 225, 0.06) inset;
   z-index: 2;
+  transform-origin: center center;
+  will-change: transform;
+  background: #121110;
+}
+
+.waypoints-card__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+
+.waypoints-card__img:first-child {
+  opacity: 1;
+}
+
+.waypoints-card__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(8, 7, 6, 0.85) 0%,
+    rgba(8, 7, 6, 0.15) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.waypoints-card__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 0.75rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  pointer-events: none;
+}
+
+.waypoints-card__region {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #c9a227;
+}
+
+.waypoints-card__spot {
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  color: #fffce1;
 }
 
 .waypoints-label {
@@ -171,6 +230,23 @@ canvas.waypoints-box {
     bottom: auto !important;
     transform: none !important;
     margin: 1.5rem auto;
+  }
+
+  .waypoints-card {
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .waypoints-card__img {
+    position: relative;
+    opacity: 1;
+    aspect-ratio: 1;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+  }
+
+  .waypoints-card__img:not(:first-child) {
+    display: block;
   }
 
   .waypoints-spacer {
