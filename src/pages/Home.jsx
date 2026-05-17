@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <>
       <SiteHeader />
-      <main className="min-h-screen bg-[#080706] text-[#fffce1]">
+      <main className="min-h-screen bg-[var(--color-bg)] text-[var(--color-text)]">
         <ScrubbedBentoHero />
         <ScrollWaypointsSection />
         <ExploreSections />

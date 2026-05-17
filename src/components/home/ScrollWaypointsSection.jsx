@@ -16,15 +16,13 @@ export default function ScrollWaypointsSection() {
       aria-label="Destinations"
     >
       <div className="waypoints-intro">
-        <p className="mb-3 text-xs font-medium uppercase tracking-[0.35em] text-[#c9a227]">
-          {destinations.kicker}
-        </p>
-        <h2 className="font-serif text-3xl font-normal tracking-tight text-[#fffce1] md:text-5xl">
+        <p className="theme-kicker mb-3">{destinations.kicker}</p>
+        <h2 className="theme-heading text-3xl md:text-5xl">
           {destinations.title}
           <br />
-          <em className="not-italic text-[#fffce1]/75">{destinations.titleEm}</em>
+          <em className="theme-heading-em">{destinations.titleEm}</em>
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-base text-[#fffce1]/60">{destinations.hint}</p>
+        <p className="theme-lede mx-auto mt-4 max-w-xl text-base">{destinations.hint}</p>
       </div>
 
       <div className="waypoints-spacer">Keep scrolling</div>
