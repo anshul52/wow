@@ -4,6 +4,7 @@ export const navLinks = [
   { href: '#section-bento', label: 'Attractions', num: '03' },
   { href: '#section-packages', label: 'Packages', num: '04' },
   { href: '#section-uae', label: 'Emirates', num: '05' },
+  { href: '#section-gallery', label: 'Gallery', num: '06' },
 ]
 
 export const hero = {
@@ -169,6 +170,73 @@ export const emirates = {
       tagline: 'Quiet beaches and corniche sunsets',
       bestTime: 'Nov – Apr',
       highlights: ['Ajman Museum', 'Manama souq', 'Al Zorah nature reserve', 'Corniche walk'],
+    },
+  ],
+}
+
+export const scrollGallery = {
+  kicker: 'Visual journey',
+  title: 'Scroll through',
+  titleEm: 'the Emirates',
+  lede: 'A pinned gallery that turns vertical scroll into smooth horizontal motion — just like the GSAP demo.',
+  scrollHint: 'Scroll down for the gallery',
+  outro: 'Keep exploring — packages and emirates await below.',
+  items: [
+    {
+      label: 'Dubai skyline',
+      meta: 'Burj Khalifa district',
+      image:
+        'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=900&q=85&fit=crop&crop=entropy',
+      alt: 'Dubai skyline with Burj Khalifa at dusk',
+    },
+    {
+      label: 'Desert dunes',
+      meta: 'Liwa Empty Quarter',
+      image:
+        'https://images.unsplash.com/photo-1509316785289-025f5b846b35?w=900&q=85&fit=crop&crop=entropy',
+      alt: 'Golden sand dunes in the UAE desert',
+    },
+    {
+      label: 'Louvre Abu Dhabi',
+      meta: 'Saadiyat Island',
+      image:
+        'https://images.unsplash.com/photo-1582672060674-bc2bd808a8b5?w=900&q=85&fit=crop&crop=entropy',
+      alt: 'Louvre Abu Dhabi museum exterior',
+    },
+    {
+      label: 'Gulf coast',
+      meta: 'Fujairah east coast',
+      image:
+        'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&q=85&fit=crop&crop=entropy',
+      alt: 'Turquoise Gulf waters along the UAE coast',
+    },
+    {
+      label: 'Heritage quarter',
+      meta: 'Heart of Sharjah',
+      image:
+        'https://images.unsplash.com/photo-1565008576549-57569a49371d?w=900&q=85&fit=crop&crop=entropy',
+      alt: 'Traditional architecture in a UAE heritage district',
+    },
+    {
+      label: 'Mountain wadi',
+      meta: 'Hatta region',
+      image:
+        'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&q=85&fit=crop&crop=entropy',
+      alt: 'Mountain road and wadi landscape near Hatta',
+    },
+    {
+      label: 'Mangrove kayak',
+      meta: 'Abu Dhabi coast',
+      image:
+        'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=900&q=85&fit=crop&crop=entropy',
+      alt: 'Kayaking through mangrove channels',
+    },
+    {
+      label: 'Corniche sunset',
+      meta: 'Ajman waterfront',
+      image:
+        'https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=900&q=85&fit=crop&crop=entropy',
+      alt: 'Sunset over a UAE corniche waterfront',
     },
   ],
 }
