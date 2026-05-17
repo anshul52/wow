@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: #0e100f;
+    color: #fffce1;
+    font-family: system-ui, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overscroll-behavior: none;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
