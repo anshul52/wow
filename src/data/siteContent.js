@@ -248,6 +248,20 @@ export const brand = {
   planCta: 'Plan your journey',
 }
 
+export const ctaBanner = {
+  kicker: 'Start planning',
+  title: 'Ready for your',
+  titleEm: 'next UAE adventure?',
+  lede: 'Share your dates and dream stops — we’ll craft a tailored itinerary across all six emirates, with honest pricing and zero guesswork.',
+  primary: { href: '#section-packages', label: 'Book your journey' },
+  secondary: { href: '#section-stacked', label: 'Browse categories' },
+  stats: [
+    { value: '48h', label: 'Quote turnaround' },
+    { value: '6', label: 'Emirates covered' },
+    { value: '200+', label: 'Curated stops' },
+  ],
+}
+
 export const footer = {
   lede: 'Curated journeys across all six emirates — from skyline nights to desert silence and Gulf shores.',
   quickLinks: [

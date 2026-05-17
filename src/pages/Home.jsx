@@ -6,6 +6,7 @@ import ScrubbedBentoHero from '../components/home/ScrubbedBentoHero'
 import ScrollWaypointsSection from '../components/home/ScrollWaypointsSection'
 import ExploreSections from '../components/home/ExploreSections'
 import HorizontalScrollGallery from '../components/home/HorizontalScrollGallery'
+import PremiumCtaSection from '../components/home/PremiumCtaSection'
 
 export default function Home() {
   useLayoutEffect(() => {
@@ -33,6 +34,7 @@ export default function Home() {
         <ExploreSections />
         <HorizontalScrollGallery />
       </main>
+      <PremiumCtaSection />
       <SiteFooter />
     </>
   )

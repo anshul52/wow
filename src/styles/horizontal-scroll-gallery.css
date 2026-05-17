@@ -87,13 +87,13 @@
 }
 
 .horizontal-gallery__outro {
-  padding: 3rem 1.5rem 5rem;
+  padding: 3rem 1.5rem 4rem;
   text-align: center;
 }
 
 @media (min-width: 768px) {
   .horizontal-gallery__outro {
-    padding: 4rem 2.5rem 7rem;
+    padding: 4rem 2.5rem 5rem;
   }
 }
 
