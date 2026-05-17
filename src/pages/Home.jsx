@@ -1,24 +1,28 @@
-import { useLayoutEffect } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLayoutEffect } from 'react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import ScrubbedBentoHero from '../components/home/ScrubbedBentoHero'
+
 export default function Home() {
   useLayoutEffect(() => {
-    const refresh = () => ScrollTrigger.refresh();
+    const refresh = () => ScrollTrigger.refresh()
 
     const onLoad = () => {
-      requestAnimationFrame(() => requestAnimationFrame(refresh));
-    };
-
-    if (document.readyState === "complete") {
-      onLoad();
-    } else {
-      window.addEventListener("load", onLoad, { once: true });
+      requestAnimationFrame(() => requestAnimationFrame(refresh))
     }
 
-    return () => window.removeEventListener("load", onLoad);
-  }, []);
+    if (document.readyState === 'complete') {
+      onLoad()
+    } else {
+      window.addEventListener('load', onLoad, { once: true })
+    }
+
+    return () => window.removeEventListener('load', onLoad)
+  }, [])
 
   return (
     <main className="min-h-screen bg-[#0e100f] text-[#fffce1]">
+      <ScrubbedBentoHero />
+
       <section className="border-t border-[#fffce1]/10 bg-[#16171d] px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="mb-6 text-3xl font-medium tracking-tight md:text-4xl">
@@ -32,16 +36,16 @@ export default function Home() {
         <div className="mx-auto mt-14 grid max-w-5xl gap-10 md:grid-cols-3">
           {[
             {
-              title: "Scroll-scrubbed",
-              body: "Animation progress is tied directly to scroll position for precise control.",
+              title: 'Scroll-scrubbed',
+              body: 'Animation progress is tied directly to scroll position for precise control.',
             },
             {
-              title: "Flip morphing",
-              body: "Tiles and canvases transition between layout states without jank.",
+              title: 'Flip morphing',
+              body: 'Tiles and canvases transition between layout states without jank.',
             },
             {
-              title: "Performance-first",
-              body: "GPU-friendly transforms, debounced resize, and scoped ScrollTriggers.",
+              title: 'Performance-first',
+              body: 'GPU-friendly transforms, debounced resize, and scoped ScrollTriggers.',
             },
           ].map((item) => (
             <article key={item.title}>
@@ -54,5 +58,5 @@ export default function Home() {
         </div>
       </section>
     </main>
-  );
+  )
 }
