@@ -1,22 +1,31 @@
-import ScrubbedBentoHero from "../components/home/ScrubbedBentoHero";
-import ScrollWaypointsSection from "../components/home/ScrollWaypointsSection";
-import HorizontalGallerySection from "../components/home/HorizontalGallerySection";
-
+import { useLayoutEffect } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 export default function Home() {
+  useLayoutEffect(() => {
+    const refresh = () => ScrollTrigger.refresh();
+
+    const onLoad = () => {
+      requestAnimationFrame(() => requestAnimationFrame(refresh));
+    };
+
+    if (document.readyState === "complete") {
+      onLoad();
+    } else {
+      window.addEventListener("load", onLoad, { once: true });
+    }
+
+    return () => window.removeEventListener("load", onLoad);
+  }, []);
+
   return (
     <main className="min-h-screen bg-[#0e100f] text-[#fffce1]">
-      <ScrubbedBentoHero />
-      <ScrollWaypointsSection />
-      <HorizontalGallerySection />
-
       <section className="border-t border-[#fffce1]/10 bg-[#16171d] px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-3xl text-center">
           <h2 className="mb-6 text-3xl font-medium tracking-tight md:text-4xl">
             Ready for your next chapter
           </h2>
           <p className="text-lg leading-relaxed text-[#fffce1]/70">
-            The homepage foundation is in place — hero bento scrub, Three.js
-            waypoint hops, and room for product stories, CTAs, and navigation.
+            Room for product stories, CTAs, and navigation.
           </p>
         </div>
 
