@@ -1,6 +1,7 @@
 import { useLayoutEffect } from 'react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import ScrubbedBentoHero from '../components/home/ScrubbedBentoHero'
+import ScrollWaypointsSection from '../components/home/ScrollWaypointsSection'
 
 export default function Home() {
   useLayoutEffect(() => {
@@ -22,6 +23,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-[#0e100f] text-[#fffce1]">
       <ScrubbedBentoHero />
+      <ScrollWaypointsSection />
 
       <section className="border-t border-[#fffce1]/10 bg-[#16171d] px-6 py-20 md:px-10 md:py-28">
         <div className="mx-auto max-w-3xl text-center">
