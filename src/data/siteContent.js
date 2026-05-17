@@ -247,3 +247,29 @@ export const brand = {
   bookCta: 'Book now',
   planCta: 'Plan your journey',
 }
+
+export const footer = {
+  lede: 'Curated journeys across all six emirates — from skyline nights to desert silence and Gulf shores.',
+  quickLinks: [
+    { href: '#section-stacked', label: 'Journey categories' },
+    { href: '#section-packages', label: 'Travel packages' },
+    { href: '#section-gallery', label: 'Photo gallery' },
+    { href: '#section-packages', label: 'Book a trip' },
+  ],
+  contact: {
+    email: 'hello@uaewow.travel',
+    phone: '+971 4 000 0000',
+    address: 'Dubai Design District, Dubai, UAE',
+  },
+  social: [
+    { href: 'https://instagram.com', label: 'Instagram', network: 'instagram' },
+    { href: 'https://facebook.com', label: 'Facebook', network: 'facebook' },
+    { href: 'https://x.com', label: 'X (Twitter)', network: 'x' },
+    { href: 'https://youtube.com', label: 'YouTube', network: 'youtube' },
+  ],
+  legal: [
+    { href: '#', label: 'Privacy' },
+    { href: '#', label: 'Terms' },
+    { href: '#', label: 'Cookies' },
+  ],
+}

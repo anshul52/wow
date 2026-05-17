@@ -1,6 +1,7 @@
 import { useLayoutEffect } from 'react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import SiteHeader from '../components/layout/SiteHeader'
+import SiteFooter from '../components/layout/SiteFooter'
 import ScrubbedBentoHero from '../components/home/ScrubbedBentoHero'
 import ScrollWaypointsSection from '../components/home/ScrollWaypointsSection'
 import ExploreSections from '../components/home/ExploreSections'
@@ -32,6 +33,7 @@ export default function Home() {
         <ExploreSections />
         <HorizontalScrollGallery />
       </main>
+      <SiteFooter />
     </>
   )
 }
